@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  menuButtons: Array<string> = ['Main Page', 'Wiki', 'Task Board', 'Projects','Logout'];
+  menuButtons: Array<string> = ['Main Page', 'Wiki', 'Task Board', 'Projects', 'Logout'];
 
 
 

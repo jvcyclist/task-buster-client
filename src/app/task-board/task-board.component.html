@@ -1,86 +1,65 @@
+<button (click)="showTasks()"> Siemanko</button>
+
 <div cdkDropListGroup>
   <div class="example-container">
     <h2>Resources</h2>
 
     <div cdkDropList
-         [cdkDropListData]="resources"
+         [cdkDropListData]="BACKLOG"
          class="example-list"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of resources" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of BACKLOG" cdkDrag>{{item}}</div>
     </div>
-    <input type="text" placeholder="add new item" #newResources (keyup.enter)="addResourcesItem(newResources.value);newResources.value=''" />
+    <input type="text" placeholder="add new item" #newBACKLOG (keyup.enter)="addBACKLOGItem(newBACKLOG.value);newBACKLOG.value=''" />
   </div>
 
   <div class="example-container">
-    <h2>Backlog</h2>
+    <h2>TODO</h2>
 
     <div cdkDropList
-         [cdkDropListData]="backlog"
+         [cdkDropListData]="TODO"
          class="example-list"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of backlog" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of TODO" cdkDrag>{{item}}</div>
     </div>
-    <input type="text" placeholder="add new item" #newBacklog (keyup.enter)="addBacklogItem(newBacklog.value);newBacklog.value=''" />
+    <input type="text" placeholder="add new item" #newTODO (keyup.enter)="addTODOItem(newTODO.value);newTODO.value=''" />
   </div>
 
   <div class="example-container">
-    <h2>To Do</h2>
+    <h2>IN PROGRESS</h2>
 
     <div cdkDropList
-         [cdkDropListData]="toDo"
+         [cdkDropListData]="IN_PROGRESS"
          class="example-list"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of toDo" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>{{item}}</div>
     </div>
-    <input type="text" placeholder="add new item" #newToDo (keyup.enter)="addToDoItem(newToDo.value);newToDo.value=''" />
+    <input type="text" placeholder="add new item" #newIN_PROGRESS (keyup.enter)="addIN_PROGRESSItem(newIN_PROGRESS.value);newIN_PROGRESS.value=''" />
   </div>
 
   <div class="example-container">
-    <h2>Doing</h2>
+    <h2>QA</h2>
 
     <div cdkDropList
-         [cdkDropListData]="doing"
+         [cdkDropListData]="QA"
          class="example-list"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of doing" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of QA" cdkDrag>{{item}}</div>
     </div>
-    <input type="text" placeholder="add new item" #newDoing (keyup.enter)="addDoingItem(newDoing.value);newDoing.value=''" />
+    <input type="text" placeholder="add new item" #newQA (keyup.enter)="addQAItem(newQA.value);newQA.value=''" />
   </div>
 
   <div class="example-container">
-    <h2>Blocked</h2>
+    <h2>DONE</h2>
 
     <div cdkDropList
-         [cdkDropListData]="blocked"
+         [cdkDropListData]="DONE"
          class="example-list"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of blocked" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of DONE" cdkDrag>{{item}}</div>
     </div>
-    <input type="text" placeholder="add new item" #newBlocked (keyup.enter)="addBlockedItem(newBlocked.value);newBlocked.value=''" />
+    <input type="text" placeholder="add new item" #newDONE (keyup.enter)="addDONEItem(newDONE.value);newDONE.value=''" />
   </div>
 
-  <div class="example-container">
-    <h2>QC</h2>
-
-    <div cdkDropList
-         [cdkDropListData]="qC"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of qC" cdkDrag>{{item}}</div>
-    </div>
-    <input type="text" placeholder="add new item" #newQc (keyup.enter)="addQCItem(newQc.value);newQc.value=''" />
-  </div>
-
-  <div class="example-container">
-    <h2>Done</h2>
-
-    <div cdkDropList
-         [cdkDropListData]="done"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-    </div>
-    <input type="text" placeholder="add new item" #newDone (keyup.enter)="addDoneItem(newDone.value);newDone.value=''" />
-  </div>
 </div>
 
