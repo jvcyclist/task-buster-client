@@ -9,6 +9,7 @@
          class="example-list"
          (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of BACKLOG" cdkDrag>{{item}}</div>
+      <ng-container *ngIf="BACKLOG.length>0 else emptylist"></ng-container>
     </div>
     <input type="text" placeholder="add new item" #newBACKLOG (keyup.enter)="addBACKLOGItem(newBACKLOG.value);newBACKLOG.value=''" />
   </div>
@@ -21,6 +22,7 @@
          class="example-list"
          (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of TODO" cdkDrag>{{item}}</div>
+      <ng-container *ngIf="TODO.length>0 else emptylist"></ng-container>
     </div>
     <input type="text" placeholder="add new item" #newTODO (keyup.enter)="addTODOItem(newTODO.value);newTODO.value=''" />
   </div>
@@ -32,7 +34,8 @@
          [cdkDropListData]="IN_PROGRESS"
          class="example-list"
          (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>{{item}} siemanko</div>
+      <ng-container *ngIf="IN_PROGRESS.length>0 else emptylist"></ng-container>
     </div>
     <input type="text" placeholder="add new item" #newIN_PROGRESS (keyup.enter)="addIN_PROGRESSItem(newIN_PROGRESS.value);newIN_PROGRESS.value=''" />
   </div>
@@ -45,6 +48,7 @@
          class="example-list"
          (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of QA" cdkDrag>{{item}}</div>
+      <ng-container *ngIf="QA.length>0 else emptylist"></ng-container>
     </div>
     <input type="text" placeholder="add new item" #newQA (keyup.enter)="addQAItem(newQA.value);newQA.value=''" />
   </div>
@@ -57,9 +61,12 @@
          class="example-list"
          (cdkDropListDropped)="drop($event)">
       <div class="example-box" *ngFor="let item of DONE" cdkDrag>{{item}}</div>
+      <ng-container *ngIf="DONE.length>0 else emptylist"></ng-container>
     </div>
     <input type="text" placeholder="add new item" #newDONE (keyup.enter)="addDONEItem(newDONE.value);newDONE.value=''" />
   </div>
 
 </div>
+
+<ng-template #emptylist style="color: #a2ff45">List is empty !!!!</ng-template>
 

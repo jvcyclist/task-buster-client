@@ -14,56 +14,25 @@ export class TaskBoardComponent implements OnInit {
   constructor(private tasksService: TasksService) { }
 
   ngOnInit(): void {
-    this.tasksService.getAllTasks().subscribe(tasks => {this.tasks = tasks; } );
-    console.log(this.tasks);
+    this.tasksService.getAllTasks().subscribe(tasks => {
+      this.tasks = tasks;
+      this.showTasks();
+    } );
+
   }
 
-  BACKLOG = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
+  BACKLOG = [];
 
-  TODO = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  TODO = [];
 
-  IN_PROGRESS = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  IN_PROGRESS = [];
 
-  QA = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  QA = [];
 
-  DONE = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  DONE = [];
 
   showTasks(): void {
-    console.log(this.tasks);
-    this.tasks.forEach(task => {
-      if(task.progress === 'BACKLOG'){
-        this.BACKLOG.push(task.name);
-      }
-    });
+    this.segregateTasks(this.tasks);
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -98,5 +67,34 @@ export class TaskBoardComponent implements OnInit {
     this.DONE.push(newItem);
   }
 
+  segregateTasks(tasks: Array<Task>){
+    tasks.forEach(task =>{
+      switch (task.progress) {
+        case 'BACKLOG':{
+          this.BACKLOG.push(task.name);
+          break;
+        }
+        case 'TODO':{
+          this.TODO.push(task.name);
+          break;
+        }
+        case 'IN_PROGRESS':{
+          this.IN_PROGRESS.push(task.name);
+          break;
+        }
+        case 'QA':{
+          this.QA.push(task.name);
+          break;
+        }
+        case 'DONE':{
+          this.DONE.push(task.name);
+          break;
+        }
+
+      }
+
+
+    });
+  }
 
 }

@@ -8,6 +8,9 @@ import { TaskBoardComponent } from './task-board/task-board.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import {TasksService} from './services/tasks.service';
+import { AppRoutingModule } from './app-routing.module';
+import {RouterModule} from '@angular/router';
+import {UserService} from './core/user/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +21,14 @@ import {TasksService} from './services/tasks.service';
     BrowserModule,
     BrowserAnimationsModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule
   ],
-  providers: [TasksService],
+  providers: [
+    TasksService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
