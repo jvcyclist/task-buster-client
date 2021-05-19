@@ -57,7 +57,7 @@ export class TaskBoardComponent implements OnInit {
     'Walk dog'
   ];
 
-  showTasks() {
+  showTasks(): void {
     console.log(this.tasks);
     this.tasks.forEach(task => {
       if(task.progress === 'BACKLOG'){
