@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import {TasksService} from '../services/tasks.service';
@@ -18,21 +19,21 @@ export class TaskBoardComponent implements OnInit {
       this.tasks = tasks;
       this.showTasks();
     } );
-
   }
 
-  BACKLOG = [];
+  BACKLOG: Array<Task> = [];
 
-  TODO = [];
+  TODO: Array<Task> = [];
 
-  IN_PROGRESS = [];
+  IN_PROGRESS: Array<Task> = [];
 
-  QA = [];
+  QA: Array<Task> = [];
 
-  DONE = [];
+  DONE: Array<Task> = [];
 
   showTasks(): void {
-    this.segregateTasks(this.tasks);
+    this.cleanTasks();
+    this.groupTasks(this.tasks);
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -45,7 +46,6 @@ export class TaskBoardComponent implements OnInit {
         event.currentIndex);
     }
   }
-
 
   addBACKLOGItem(newItem) {
     this.BACKLOG.push(newItem);
@@ -67,34 +67,44 @@ export class TaskBoardComponent implements OnInit {
     this.DONE.push(newItem);
   }
 
-  segregateTasks(tasks: Array<Task>){
+  groupTasks(tasks: Array<Task>): void{
     tasks.forEach(task =>{
       switch (task.progress) {
         case 'BACKLOG':{
-          this.BACKLOG.push(task.name);
+          this.BACKLOG.push(task);
           break;
         }
         case 'TODO':{
-          this.TODO.push(task.name);
+          this.TODO.push(task);
           break;
         }
         case 'IN_PROGRESS':{
-          this.IN_PROGRESS.push(task.name);
+          this.IN_PROGRESS.push(task);
           break;
         }
         case 'QA':{
-          this.QA.push(task.name);
+          this.QA.push(task);
           break;
         }
         case 'DONE':{
-          this.DONE.push(task.name);
+          this.DONE.push(task);
           break;
         }
-
       }
-
-
     });
   }
+
+  cleanTasks(){
+    this.BACKLOG = [];
+    this.DONE = [];
+    this.IN_PROGRESS = [];
+    this.QA = [];
+    this.TODO = [];
+  }
+
+
+
+
+
 
 }

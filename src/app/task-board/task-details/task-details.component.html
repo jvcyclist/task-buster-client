@@ -1,0 +1,29 @@
+<p>Task ID: {{task.id}}</p>
+
+<table>
+  <tr>
+    <td><label>Task Name: </label></td>
+    <td><input [(ngModel)]="task.name" type="text"></td>
+  </tr>
+
+  <tr>
+    <td><label>Description: </label></td>
+    <td><input [(ngModel)]="task.description"type="text"></td>
+  </tr>
+
+  <tr>
+    <td><label>Progress: </label></td>
+    <td><input [(ngModel)]="task.progress" type="text"></td>
+  </tr>
+
+  <tr>
+    <td><label>Story Points: </label></td>
+    <td><input [(ngModel)]="task.storyPoints" type="text"></td>
+  </tr>
+  <tr>
+    <td><button (click)="onBack()">Back</button></td>
+    <td><button>Update</button></td>
+  </tr>
+
+</table>
+

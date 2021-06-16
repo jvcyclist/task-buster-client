@@ -9,13 +9,26 @@ import {Task} from '../shared/task.model';
 })
 export class TasksService {
 
-  URL = 'http://localhost:8070/api/tasks';
+  private URL = 'http://localhost:8070/api/tasks';
   tasks: Array<Task>;
 
   constructor(private http: HttpClient) {
   }
 
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.URL, task);
+  }
+
+
+  getTask(id: number): Observable<Task> {
+    return this.http.get<Task>(this.URL + '/' + id);
+  }
+
   getAllTasks(): Observable<Array<Task>> {
     return this.http.get<Array<Task>>(this.URL);
+  }
+
+  updateTask(task: Task): Observable<Task>{
+    return this.http.put<Task>(this.URL + '/' + task.id, task);
   }
 }

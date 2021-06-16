@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,21 +10,35 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import {TasksService} from './services/tasks.service';
 import { AppRoutingModule } from './app-routing.module';
-import {RouterModule} from '@angular/router';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 import {UserService} from './core/user/user.service';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaskDetailsComponent } from './task-board/task-details/task-details.component';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
     TaskBoardComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    TaskDetailsComponent
   ],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     DragDropModule,
     HttpClientModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [
     TasksService,

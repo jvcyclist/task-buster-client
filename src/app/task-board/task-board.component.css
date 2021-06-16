@@ -26,6 +26,7 @@
   box-sizing: border-box;
   cursor: move;
   background: #a2ff45;
+  background-image: url(../shared/static/cloud.png);
   font-size: 14px;
 }
 
