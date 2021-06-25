@@ -5,7 +5,7 @@
     <div cdkDropList
          [cdkDropListData]="BACKLOG"
          class="example-list"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event)" id="BACKLOG">
       <div class="example-box" *ngFor="let item of BACKLOG" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="BACKLOG.length>0 else emptylist"></ng-container>
     </div>
@@ -18,7 +18,7 @@
     <div cdkDropList
          [cdkDropListData]="TODO"
          class="example-list"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event)" id="TODO">
       <div class="example-box" *ngFor="let item of TODO" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="TODO.length>0 else emptylist"></ng-container>
     </div>
@@ -31,7 +31,7 @@
     <div cdkDropList
          [cdkDropListData]="IN_PROGRESS"
          class="example-list"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event)" id="IN_PROGRESS">
       <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="IN_PROGRESS.length>0 else emptylist"></ng-container>
     </div>
@@ -44,7 +44,7 @@
     <div cdkDropList
          [cdkDropListData]="QA"
          class="example-list"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event)" id="QA">
       <div class="example-box" *ngFor="let item of QA" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="QA.length>0 else emptylist"></ng-container>
     </div>
@@ -57,7 +57,7 @@
     <div cdkDropList
          [cdkDropListData]="DONE"
          class="example-list"
-         (cdkDropListDropped)="drop($event)">
+         (cdkDropListDropped)="drop($event)" id="DONE">
       <div class="example-box" *ngFor="let item of DONE" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="DONE.length>0 else emptylist"></ng-container>
     </div>

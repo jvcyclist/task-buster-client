@@ -13,7 +13,11 @@
 
   <tr>
     <td><label>Progress: </label></td>
-    <td><input [(ngModel)]="task.progress" type="text"></td>
+    <td>
+        <select name="status" id="status" [(ngModel)]="task.progress">
+          <option *ngFor="let status of statuses" value="{{status}}">{{status}}</option>
+        </select>
+    </td>
   </tr>
 
   <tr>
@@ -22,8 +26,7 @@
   </tr>
   <tr>
     <td><button (click)="onBack()">Back</button></td>
-    <td><button>Update</button></td>
+    <td><button (click)="updateTask()">Update</button></td>
   </tr>
-
 </table>
 

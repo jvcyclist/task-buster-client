@@ -16,6 +16,7 @@ export class TaskDetailsComponent implements OnInit {
 
   id: number;
   task: Task = null;
+  statuses: string[] = ['BACKLOG','TODO','IN_PROGRESS','QA','DONE'];
 
   constructor
   (
@@ -25,7 +26,6 @@ export class TaskDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    /*this.task = new Task(1,'test','test description of task', 5, 'BACKLOG');*/
     this.getTask();
   }
 
@@ -39,12 +39,16 @@ export class TaskDetailsComponent implements OnInit {
 
     this.taskService.getTask(this.id)
       .subscribe(task => this.task = task);
-      console.log("Task id: "+ this.task.id);
   }
 
     onBack(){
       this.location.back();
     }
+
+    updateTask(){
+      this.taskService.updateTask(this.task).subscribe( res => console.log(res));
+    }
+
 
   }
 

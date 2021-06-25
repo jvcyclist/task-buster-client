@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import {TasksService} from '../services/tasks.service';
@@ -36,10 +35,14 @@ export class TaskBoardComponent implements OnInit {
     this.groupTasks(this.tasks);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      this.updateTaskStatus(Number(event.previousContainer.data[event.previousIndex]['id']),
+      event.container.id
+      )
+      event.previousContainer.data[event.previousIndex]['id']
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
@@ -102,9 +105,12 @@ export class TaskBoardComponent implements OnInit {
     this.TODO = [];
   }
 
-
-
-
-
+  updateTaskStatus(id: number, progress: string){
+    let task: Task = new Task();
+    task.id = id;
+    task.progress = progress;
+    console.log(task);
+    this.tasksService.updateTaskStatus(task).subscribe(res => console.log(res));
+  }
 
 }
