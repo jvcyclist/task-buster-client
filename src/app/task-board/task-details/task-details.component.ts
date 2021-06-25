@@ -49,6 +49,12 @@ export class TaskDetailsComponent implements OnInit {
       this.taskService.updateTask(this.task).subscribe( res => console.log(res));
     }
 
+    deleteTask(){
+      this.taskService.deleteTask(this.task.id).subscribe( res => {
+        console.log(res);
+        this.location.back();
+      });
+    }
 
   }
 

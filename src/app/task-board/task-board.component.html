@@ -9,7 +9,7 @@
       <div class="example-box" *ngFor="let item of BACKLOG" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="BACKLOG.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newBACKLOG (keyup.enter)="addBACKLOGItem(newBACKLOG.value);newBACKLOG.value=''" />
+    <input type="text" placeholder="add new item" #newBACKLOGTaskName (keyup.enter)="addNewTask(newBACKLOGTaskName.value,'BACKLOG');newBACKLOGTaskName.value=''" />
   </div>
 
   <div class="example-container">
@@ -22,7 +22,7 @@
       <div class="example-box" *ngFor="let item of TODO" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="TODO.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newTODO (keyup.enter)="addTODOItem(newTODO.value);newTODO.value=''" />
+    <input type="text" placeholder="add new item" #newTODOTaskName (keyup.enter)="addNewTask(newTODOTaskName.value,'TODO');newTODOTaskName.value=''" />
   </div>
 
   <div class="example-container">
@@ -35,7 +35,7 @@
       <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="IN_PROGRESS.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newIN_PROGRESS (keyup.enter)="addIN_PROGRESSItem(newIN_PROGRESS.value);newIN_PROGRESS.value=''" />
+    <input type="text" placeholder="add new item" #newIN_PROGRESSTaskName (keyup.enter)="addNewTask(newIN_PROGRESSTaskName.value,'IN_PROGRESS');newIN_PROGRESSTaskName.value=''" />
   </div>
 
   <div class="example-container">
@@ -48,7 +48,7 @@
       <div class="example-box" *ngFor="let item of QA" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="QA.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newQA (keyup.enter)="addQAItem(newQA.value);newQA.value=''" />
+    <input type="text" placeholder="add new item" #newQATaskName (keyup.enter)="addNewTask(newQATaskName.value,'QA');newQATaskName.value=''" />
   </div>
 
   <div class="example-container">
@@ -61,7 +61,7 @@
       <div class="example-box" *ngFor="let item of DONE" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="DONE.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newDONE (keyup.enter)="addDONEItem(newDONE.value);newDONE.value=''" />
+    <input type="text" placeholder="add new item" #newDONETaskName (keyup.enter)="addNewTask(newDONETaskName.value,'DONE');newDONETaskName.value=''" />
   </div>
 
 </div>

@@ -36,4 +36,7 @@ export class TasksService {
     return this.http.patch<Task>(this.URL + '/' + task.id, task);
   }
 
+  deleteTask(id: number): Observable<Task>{
+    return this.http.delete<Task>(this.URL + '/' + id);
+  }
 }

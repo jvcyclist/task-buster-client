@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import {TasksService} from '../services/tasks.service';
 import {Task} from '../shared/task.model';
@@ -50,8 +50,32 @@ export class TaskBoardComponent implements OnInit {
     }
   }
 
+
+  addNewTask(name: string, progress: string){
+    let task: Task = new Task();
+    task.name = name;
+    task.progress = progress;
+    task.storyPoints = 0;
+    this.tasksService.addTask(task).subscribe(res => {
+      this.tasksService.getAllTasks().subscribe(tasks => {
+      this.tasks = tasks;
+      this.showTasks();
+    } );})
+
+  }
+
+
+
+
   addBACKLOGItem(newItem) {
-    this.BACKLOG.push(newItem);
+    let progress = '';
+    let task: Task = new Task();
+    task.name = newItem;
+    task.progress='BACKLOG';
+    task.storyPoints = 0;
+    this.tasksService.addTask(task).subscribe(res => this.BACKLOG.push(res))
+
+
   }
 
   addTODOItem(newItem) {
