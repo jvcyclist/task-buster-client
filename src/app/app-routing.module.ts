@@ -1,3 +1,6 @@
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { TaskDetailsComponent } from './task-board/task-details/task-details.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -14,6 +17,9 @@ const  routes: Routes = [
   {path: 'kanban', component: TaskBoardComponent},
   {path: 'register', component: RegisterComponent },
   {path: 'task/:id', component: TaskDetailsComponent },
+  {path: 'projects', component: ProjectsComponent },
+  {path: 'projects/:id', component: ProjectDetailsComponent },
+  {path: 'projects/create', component: CreateProjectComponent },
 
   {path: '**', component: PageNotFoundComponent},
 ]

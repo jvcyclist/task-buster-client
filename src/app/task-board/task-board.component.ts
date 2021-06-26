@@ -1,7 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import {TasksService} from '../services/tasks.service';
-import {Task} from '../shared/task.model';
+import { TasksService } from '../services/tasks.service';
+import { Task } from '../shared/task.model';
+
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-task-board',
@@ -10,14 +12,16 @@ import {Task} from '../shared/task.model';
 })
 export class TaskBoardComponent implements OnInit {
 
-    tasks: Array<Task>;
-  constructor(private tasksService: TasksService) { }
+  tasks: Array<Task>;
+  constructor(private tasksService: TasksService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
     this.tasksService.getAllTasks().subscribe(tasks => {
       this.tasks = tasks;
       this.showTasks();
-    } );
+    });
   }
 
   BACKLOG: Array<Task> = [];
@@ -40,7 +44,7 @@ export class TaskBoardComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       this.updateTaskStatus(Number(event.previousContainer.data[event.previousIndex]['id']),
-      event.container.id
+        event.container.id
       )
       event.previousContainer.data[event.previousIndex]['id']
       transferArrayItem(event.previousContainer.data,
@@ -50,32 +54,26 @@ export class TaskBoardComponent implements OnInit {
     }
   }
 
-
-  addNewTask(name: string, progress: string){
+  addNewTask(name: string, progress: string) {
     let task: Task = new Task();
     task.name = name;
     task.progress = progress;
     task.storyPoints = 0;
     this.tasksService.addTask(task).subscribe(res => {
       this.tasksService.getAllTasks().subscribe(tasks => {
-      this.tasks = tasks;
-      this.showTasks();
-    } );})
-
+        this.tasks = tasks;
+        this.showTasks();
+      });
+    })
   }
-
-
-
 
   addBACKLOGItem(newItem) {
     let progress = '';
     let task: Task = new Task();
     task.name = newItem;
-    task.progress='BACKLOG';
+    task.progress = 'BACKLOG';
     task.storyPoints = 0;
     this.tasksService.addTask(task).subscribe(res => this.BACKLOG.push(res))
-
-
   }
 
   addTODOItem(newItem) {
@@ -94,26 +92,26 @@ export class TaskBoardComponent implements OnInit {
     this.DONE.push(newItem);
   }
 
-  groupTasks(tasks: Array<Task>): void{
-    tasks.forEach(task =>{
+  groupTasks(tasks: Array<Task>): void {
+    tasks.forEach(task => {
       switch (task.progress) {
-        case 'BACKLOG':{
+        case 'BACKLOG': {
           this.BACKLOG.push(task);
           break;
         }
-        case 'TODO':{
+        case 'TODO': {
           this.TODO.push(task);
           break;
         }
-        case 'IN_PROGRESS':{
+        case 'IN_PROGRESS': {
           this.IN_PROGRESS.push(task);
           break;
         }
-        case 'QA':{
+        case 'QA': {
           this.QA.push(task);
           break;
         }
-        case 'DONE':{
+        case 'DONE': {
           this.DONE.push(task);
           break;
         }
@@ -121,7 +119,7 @@ export class TaskBoardComponent implements OnInit {
     });
   }
 
-  cleanTasks(){
+  cleanTasks() {
     this.BACKLOG = [];
     this.DONE = [];
     this.IN_PROGRESS = [];
@@ -129,7 +127,7 @@ export class TaskBoardComponent implements OnInit {
     this.TODO = [];
   }
 
-  updateTaskStatus(id: number, progress: string){
+  updateTaskStatus(id: number, progress: string) {
     let task: Task = new Task();
     task.id = id;
     task.progress = progress;

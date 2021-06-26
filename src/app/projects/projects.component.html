@@ -1,0 +1,18 @@
+<p>projects works!</p>
+<div>
+<table>
+  <th>Project ID</th>
+  <th>Project Title</th>
+  <th>Project Description</th>
+  <tr *ngFor="let project of projects">
+    <td>{{project.id}}</td>
+    <td>{{project.title}}</td>
+    <td>{{project.description}}</td>
+    <button routerLink="/projects/{{project.id}}">Show</button>
+  </tr>
+</table>
+</div>
+
+
+
+

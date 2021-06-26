@@ -17,6 +17,9 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskDetailsComponent } from './task-board/task-details/task-details.component';
 import { CommonModule } from '@angular/common';
+import { ProjectsComponent } from './projects/projects.component';
+import { CreateProjectComponent } from './projects/create-project/create-project.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { CommonModule } from '@angular/common';
     RegisterComponent,
     PageNotFoundComponent,
     HomeComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    ProjectsComponent,
+    CreateProjectComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     CommonModule,
