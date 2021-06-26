@@ -1,67 +1,89 @@
+<h1>Kanban</h1>
+<table>
+  <tr>
+    <td><label>Sprint ID: </label></td>
+    <td>
+      <select (change)="changeCurrentSprint($event.target.value)" name="sprint" id="sprints"
+        [(ngModel)]="currentSprintId" [value]="currentSprintId">
+        <option *ngFor="let sprint of sprints" value="{{sprint.id}}">{{sprint.id}}</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Start Date</td>
+    <td>{{currentSprint.startDate | date: 'dd-MM-yyyy'}}</td>
+  </tr>
+  <tr>
+    <td>End Date</td>
+    <td>{{currentSprint.endDate | date: 'dd-MM-yyyy'}}</td>
+  </tr>
+</table>
+
 <div cdkDropListGroup>
   <div class="example-container">
     <h2>BACKLOG</h2>
 
-    <div cdkDropList
-         [cdkDropListData]="BACKLOG"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)" id="BACKLOG">
-      <div class="example-box" *ngFor="let item of BACKLOG" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
+    <div cdkDropList [cdkDropListData]="BACKLOG" class="example-list" (cdkDropListDropped)="drop($event)" id="BACKLOG">
+      <div class="example-box" *ngFor="let item of BACKLOG" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story
+        Points: {{item.storyPoints}}<button type="button" class="btn btn-info"
+          routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="BACKLOG.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newBACKLOGTaskName (keyup.enter)="addNewTask(newBACKLOGTaskName.value,'BACKLOG');newBACKLOGTaskName.value=''" />
+    <input type="text" placeholder="add new item" #newBACKLOGTaskName
+      (keyup.enter)="addNewTask(newBACKLOGTaskName.value,'BACKLOG');newBACKLOGTaskName.value=''" />
   </div>
 
   <div class="example-container">
     <h2>TODO</h2>
 
-    <div cdkDropList
-         [cdkDropListData]="TODO"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)" id="TODO">
-      <div class="example-box" *ngFor="let item of TODO" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
+    <div cdkDropList [cdkDropListData]="TODO" class="example-list" (cdkDropListDropped)="drop($event)" id="TODO">
+      <div class="example-box" *ngFor="let item of TODO" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story
+        Points: {{item.storyPoints}}<button type="button" class="btn btn-info"
+          routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="TODO.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newTODOTaskName (keyup.enter)="addNewTask(newTODOTaskName.value,'TODO');newTODOTaskName.value=''" />
+    <input type="text" placeholder="add new item" #newTODOTaskName
+      (keyup.enter)="addNewTask(newTODOTaskName.value,'TODO');newTODOTaskName.value=''" />
   </div>
 
   <div class="example-container">
     <h2>IN PROGRESS</h2>
 
-    <div cdkDropList
-         [cdkDropListData]="IN_PROGRESS"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)" id="IN_PROGRESS">
-      <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
+    <div cdkDropList [cdkDropListData]="IN_PROGRESS" class="example-list" (cdkDropListDropped)="drop($event)"
+      id="IN_PROGRESS">
+      <div class="example-box" *ngFor="let item of IN_PROGRESS" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story
+        Points: {{item.storyPoints}}<button type="button" class="btn btn-info"
+          routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="IN_PROGRESS.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newIN_PROGRESSTaskName (keyup.enter)="addNewTask(newIN_PROGRESSTaskName.value,'IN_PROGRESS');newIN_PROGRESSTaskName.value=''" />
+    <input type="text" placeholder="add new item" #newIN_PROGRESSTaskName
+      (keyup.enter)="addNewTask(newIN_PROGRESSTaskName.value,'IN_PROGRESS');newIN_PROGRESSTaskName.value=''" />
   </div>
 
   <div class="example-container">
     <h2>QA</h2>
 
-    <div cdkDropList
-         [cdkDropListData]="QA"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)" id="QA">
-      <div class="example-box" *ngFor="let item of QA" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
+    <div cdkDropList [cdkDropListData]="QA" class="example-list" (cdkDropListDropped)="drop($event)" id="QA">
+      <div class="example-box" *ngFor="let item of QA" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points:
+        {{item.storyPoints}}<button type="button" class="btn btn-info" routerLink="/task/{{item.id}}">Show</button>
+      </div>
       <ng-container *ngIf="QA.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newQATaskName (keyup.enter)="addNewTask(newQATaskName.value,'QA');newQATaskName.value=''" />
+    <input type="text" placeholder="add new item" #newQATaskName
+      (keyup.enter)="addNewTask(newQATaskName.value,'QA');newQATaskName.value=''" />
   </div>
 
   <div class="example-container">
     <h2>DONE</h2>
 
-    <div cdkDropList
-         [cdkDropListData]="DONE"
-         class="example-list"
-         (cdkDropListDropped)="drop($event)" id="DONE">
-      <div class="example-box" *ngFor="let item of DONE" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story Points: {{item.storyPoints}}<button routerLink="/task/{{item.id}}">Show</button></div>
+    <div cdkDropList [cdkDropListData]="DONE" class="example-list" (cdkDropListDropped)="drop($event)" id="DONE">
+      <div class="example-box" *ngFor="let item of DONE" cdkDrag>ID {{item.id}} <br> Name: {{item.name}}<br>Story
+        Points: {{item.storyPoints}}<button type="button" class="btn btn-info"
+          routerLink="/task/{{item.id}}">Show</button></div>
       <ng-container *ngIf="DONE.length>0 else emptylist"></ng-container>
     </div>
-    <input type="text" placeholder="add new item" #newDONETaskName (keyup.enter)="addNewTask(newDONETaskName.value,'DONE');newDONETaskName.value=''" />
+    <input type="text" placeholder="add new item" #newDONETaskName
+      (keyup.enter)="addNewTask(newDONETaskName.value,'DONE');newDONETaskName.value=''" />
   </div>
 
 </div>

@@ -1,26 +1,46 @@
-<p>create-project works!</p>
+<h1>Project</h1>
+<div style="display: block;">
 <table>
   <tr>
     <td><label>Project ID</label></td>
     <td>{{project.id}}</td>
   </tr>
 
-<tr>
-  <td><label>Project Title</label></td>
-  <td><input [(ngModel)]="project.title" type="text" placeholder="put Project Name here"></td>
-</tr>
+  <tr>
+    <td><label>Project Title</label></td>
+    <td><input [(ngModel)]="project.title" type="text" placeholder="put Project Name here"></td>
+  </tr>
 
-<tr>
-  <td><label>Project Description</label></td>
-  <td><input [(ngModel)]="project.description" type="text" placeholder="put Project Description here"></td>
-</tr>
+  <tr>
+    <td><label>Project Description</label></td>
+    <td><input [(ngModel)]="project.description" type="text" placeholder="put Project Description here"></td>
+  </tr>
 
-<tr>
-  <td><label>Administrator</label></td>
-  <td><label> testAdministrator123</label></td>
-</tr>
-<button (click)="updateProject()">Update</button>
-<button (click)="onBack()">Back</button>
-<button (click)="deleteProject()">Delete</button>
-
+  <tr>
+    <td><label>Administrator</label></td>
+    <td><label> testAdministrator123</label></td>
+  </tr>
+  <button type="button" class="btn btn-secondary" (click)="onBack()">Back</button>
+  <button type="button" class="btn btn-success" (click)="updateProject()">Update</button>
+  <button type="button" class="btn btn-danger" (click)="deleteProject()">Delete</button>
 </table>
+
+
+  <h4>Participants:</h4>
+  <table>
+    <tr>
+      <th>User Name</th>
+    </tr>
+    <tr *ngFor="let participant of participants">
+      <td>{{participant.username}}</td>
+    </tr>
+
+    <table>
+      <tr>
+        <td>Invite user to project: </td>
+        <td><input [(ngModel)]="userNameToInvite" placeholder="Type username which You want invite to project"></td>
+        <button type="button" class="btn btn-warning" (click)="onInvite()">Invite!</button>
+      </tr>
+    </table>
+  </table>
+</div>

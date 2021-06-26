@@ -1,8 +1,17 @@
-
- <button routerLink="/home">Home</button>
- <button routerLink="/kanban">Task Board</button>
- <button routerLink="/projects">Projects</button>
+<div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+  <label ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" routerLink="/home" value="1"> Home
+  </label>
+  <label ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" routerLink="/kanban" value="kanban"> Task Board
+  </label>
+  <label ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" routerLink="/projects" value="false"> Projects
+  </label>
+  <label ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" routerLink="/sprints" value="false"> Sprints
+  </label>
+</div>
+<hr>
  <router-outlet></router-outlet>
-
 <footer>Patryk Karaś</footer>
-

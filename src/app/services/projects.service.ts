@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class ProjectsService {
 
   private URL = 'http://localhost:8070/api/projects';
-  tasks: Array<Project>;
 
   constructor(private http: HttpClient) {
   }

@@ -20,6 +20,10 @@ import { CommonModule } from '@angular/common';
 import { ProjectsComponent } from './projects/projects.component';
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SprintsComponent } from './sprints/sprints.component';
+import { SprintsDetailsComponent } from './sprints/sprints-details/sprints-details.component';
+import { SprintsCreateComponent } from './sprints/sprints-create/sprints-create.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,10 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
     TaskDetailsComponent,
     ProjectsComponent,
     CreateProjectComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    SprintsComponent,
+    SprintsDetailsComponent,
+    SprintsCreateComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +51,8 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
     HttpClientModule,
     AppRoutingModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [
     TasksService,

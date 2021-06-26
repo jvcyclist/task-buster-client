@@ -1,3 +1,6 @@
+import { SprintsCreateComponent } from './sprints/sprints-create/sprints-create.component';
+import { SprintsDetailsComponent } from './sprints/sprints-details/sprints-details.component';
+import { SprintsComponent } from './sprints/sprints.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
@@ -20,6 +23,9 @@ const  routes: Routes = [
   {path: 'projects', component: ProjectsComponent },
   {path: 'projects/:id', component: ProjectDetailsComponent },
   {path: 'projects/create', component: CreateProjectComponent },
+  {path: 'sprints', component: SprintsComponent },
+  {path: 'sprints/:id', component: SprintsDetailsComponent },
+  {path: 'sprints/create', component: SprintsCreateComponent },
 
   {path: '**', component: PageNotFoundComponent},
 ]

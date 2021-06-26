@@ -1,0 +1,17 @@
+<h1>Sprints</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Planned Story Points</th>
+  </tr>
+<tr *ngFor="let sprint of sprints">
+  <td>{{sprint.id}}</td>
+  <td>{{sprint.startDate | date:'dd/MM/yyyy'}}</td>
+  <td>{{sprint.endDate | date:'dd/MM/yyyy'}}</td>
+  <td>{{sprint.plannedStoryPoints}}</td>
+  <td><button  type="button" class="btn btn-info" routerLink="/sprints/{{sprint.id}}">Show</button></td>
+</tr>
+</table>

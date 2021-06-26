@@ -3,6 +3,7 @@ import { Project } from './../../shared/project.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import {Location} from '@angular/common';
+import { User } from 'src/app/core/user/user.model';
 
 @Component({
   selector: 'app-project-details',
@@ -13,6 +14,8 @@ export class ProjectDetailsComponent implements OnInit {
 
   id: number;
   project: Project;
+  participants: User[]= [];
+  userNameToInvite: string;
 
   constructor(private projectsService: ProjectsService,
     private route: ActivatedRoute,
@@ -20,6 +23,9 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProject();
+    this.participants.push(new User('user1',''));
+    this.participants.push(new User('user2',''));
+    this.participants.push(new User('user3',''));
   }
 
   getProject(): void {
@@ -49,6 +55,11 @@ deleteProject(){
     this.location.back()
   })
 
+}
+
+onInvite(){
+  console.log("Invite has been sent to user: " + this.userNameToInvite)
+  this.userNameToInvite = ''
 }
 
 }

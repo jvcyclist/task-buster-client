@@ -1,0 +1,22 @@
+<h1>Sprint<h1>
+    <table>
+      <tr>
+        <td>Sprint ID: </td>
+        <td>{{sprint.id }}</td>
+      </tr>
+      <tr>
+        <td>Start Date: </td>
+        <td>{{sprint.startDate }}</td>
+      </tr>
+      <tr>
+        <td>End Date: </td>
+        <td>{{sprint.endDate }}</td>
+      </tr>
+      <tr>
+        <td>Planned Story Points: </td>
+        <td>{{sprint.plannedStoryPoints }}</td>
+      </tr>
+      <button type="button" class="btn btn-secondary" (click)="onBack()">Back</button>
+      <button type="button" class="btn btn-success" (click)="updateSprint()">Update</button>
+      <button type="button" class="btn btn-danger" (click)="deleteSprint()">Delete</button>
+    </table>

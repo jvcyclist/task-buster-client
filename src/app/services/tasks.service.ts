@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {Task} from '../shared/task.model';
@@ -19,13 +19,18 @@ export class TasksService {
     return this.http.post<Task>(this.URL, task);
   }
 
-
   getTask(id: number): Observable<Task> {
     return this.http.get<Task>(this.URL + '/' + id);
   }
 
   getAllTasks(): Observable<Array<Task>> {
     return this.http.get<Array<Task>>(this.URL);
+  }
+
+  getAllTasksBySprintId(sprintId: number): Observable<Array<Task>> {
+    let params = new HttpParams();
+    params.append('sprintId', String(sprintId))
+    return this.http.get<Array<Task>>(this.URL,{params: params});
   }
 
   updateTask(task: Task): Observable<Task>{

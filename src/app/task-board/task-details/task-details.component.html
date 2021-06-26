@@ -25,9 +25,9 @@
     <td><input [(ngModel)]="task.storyPoints" type="text"></td>
   </tr>
   <tr>
-    <td><button (click)="onBack()">Back</button></td>
-    <td><button (click)="updateTask()">Update</button></td>
-    <td><button (click)="deleteTask()">Delete</button></td>
+    <td><button type="button" class="btn btn-secondary" (click)="onBack()">Back</button></td>
+    <td><button type="button" class="btn btn-success" (click)="updateTask()">Update</button></td>
+    <td><button type="button" class="btn btn-danger" (click)="deleteTask()">Delete</button></td>
   </tr>
 </table>
 
