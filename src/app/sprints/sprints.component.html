@@ -1,4 +1,5 @@
 <h1>Sprints</h1>
+<h1>For Project ID: {{project.id}} Name: {{project.title}}</h1>
 <button type="button" class="btn btn-warning" routerLink="/sprint/create">Create New Sprint</button>
 <table>
   <tr>
@@ -13,5 +14,7 @@
   <td>{{sprint.endDate | date:'dd/MM/yyyy'}}</td>
   <td>{{sprint.plannedStoryPoints}}</td>
   <td><button  type="button" class="btn btn-info" routerLink="/sprints/{{sprint.id}}">Show</button></td>
+  <td><button  type="button" class="btn btn-info" (click)="setCurrentSprint(sprint.id)" routerLink="/kanban" >Go to TaskBoard</button></td>
+
 </tr>
 </table>

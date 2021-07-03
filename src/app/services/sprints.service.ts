@@ -24,4 +24,12 @@ export class SprintsService {
     return this.http.get<Sprint>(this.URL + '/current');
   }
 
+  getSprintByProjectId(projectId: number){
+    return this.http.get<Sprint[]>(this.URL + '/?projectId=' + projectId)
+  }
+
+  addSprint(sprint: Sprint){
+    return this.http.post<Sprint>(this.URL, sprint);
+  }
+
 }

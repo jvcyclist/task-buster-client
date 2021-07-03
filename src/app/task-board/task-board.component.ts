@@ -1,3 +1,4 @@
+import { TreeService } from './../tree.service';
 import { ProjectsService } from './../services/projects.service';
 import { SprintsService } from './../services/sprints.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
@@ -27,26 +28,31 @@ export class TaskBoardComponent implements OnInit {
 
   constructor(
     private tasksService: TasksService,
-    private sprintsService: SprintsService
+    private sprintsService: SprintsService,
+    private treeService: TreeService,
+    private projectService: ProjectsService
   ) { }
 
   ngOnInit(): void {
+    this.currentSprintId = this.treeService.currentSprintId;
+    this.projectService.getProject(this.treeService.currentProjectId).subscribe(project =>{
+      this.currentProject = project;
+    })
 
-    this.sprintsService.getSprints().subscribe(sprints => {
+    this.sprintsService.getSprint(this.treeService.currentSprintId).subscribe(sprint =>{
+      this.currentSprint = sprint;
+    })
+
+
+    this.sprintsService.getSprintByProjectId(this.treeService.currentProjectId).subscribe(sprints =>{
       this.sprints = sprints;
     })
 
-    this.sprintsService.getCurrentSprint().subscribe(
-      currentSprint => {
-        this.currentSprint = currentSprint;
-        this.tasks = currentSprint.taskList;
-        this.currentSprintId = currentSprint.id;
+      this.tasksService.getAllTasksBySprintId(this.treeService.currentSprintId).subscribe(tasks => {
+        this.tasks = tasks;
         this.showTasks();
-      },
-      () =>{
-        this.currentSprintId = 1;
-      }
-      )
+      })
+
   }
 
   BACKLOG: Array<Task> = [];
@@ -146,6 +152,7 @@ export class TaskBoardComponent implements OnInit {
   changeCurrentSprint(id: number){
     this.currentSprint = this.sprints.filter(s => s.id == id)[0]
     this.tasks = this.currentSprint.taskList;
+    this.treeService.currentSprintId = id;
     this.showTasks();
   }
 

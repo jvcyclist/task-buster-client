@@ -4,6 +4,7 @@ export interface ISprint {
   startDate?: Date;
   endDate?: Date;
   plannedStoryPoints?: number;
+  project_id?: number
   taskList?: Task[];
 }
 
@@ -14,6 +15,7 @@ export class Sprint implements ISprint {
               public startDate?: Date,
               public endDate?: Date,
               public plannedStoryPoints?: number,
+              public project_id?: number,
               public taskList?: Task[]
               ) {}
 }

@@ -1,1 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.div{
+  margin: 0 auto;
+}

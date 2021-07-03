@@ -1,4 +1,4 @@
-<div>
+<div style="display: inline-block;">
 <div *ngIf="isAuthenticated" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
   <label ngbButtonLabel class="btn-primary">
     <input ngbButton type="radio" routerLink="/home" value="1"> Home
@@ -21,7 +21,10 @@
     <input ngbButton type="radio" value="false" (click)="logout()">Logout
   </label>
 </div>
+<img src="../assets/logo.png" style="display: inline-block;">
 </div>
+
+
 
 <hr>
  <router-outlet></router-outlet>

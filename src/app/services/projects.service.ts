@@ -21,6 +21,11 @@ export class ProjectsService {
     return this.http.get<Project[]>(this.URL);
   }
 
+  getAllProjectsByUsername(username): Observable<Project[]>{
+    return this.http.get<Project[]>(this.URL + '/?admin_username='+username);
+  }
+
+
   getProject(id: number): Observable<Project> {
     return this.http.get<Project>(this.URL + '/' + id);
   }
@@ -32,5 +37,7 @@ export class ProjectsService {
   deleteProject(id: number): Observable<any>{
     return this.http.delete<any>(this.URL + '/' + id)
   }
+
+
 
 }

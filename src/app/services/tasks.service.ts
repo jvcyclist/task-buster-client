@@ -28,9 +28,7 @@ export class TasksService {
   }
 
   getAllTasksBySprintId(sprintId: number): Observable<Array<Task>> {
-    let params = new HttpParams();
-    params.append('sprintId', String(sprintId))
-    return this.http.get<Array<Task>>(this.URL,{params: params});
+    return this.http.get<Array<Task>>(this.URL + '/?sprintId=' + sprintId);
   }
 
   updateTask(task: Task): Observable<Task>{

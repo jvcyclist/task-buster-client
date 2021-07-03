@@ -1,1 +1,19 @@
-<p>sprints-create works!</p>
+<h1>Sprint - Create<h1>
+  <h2>For project - ID: {{currentProject.id}} Name: {{currentProject.title}}</h2>
+  <table>
+    <tr>
+      <td>Start Date: </td>
+      <input type="date" [(ngModel)]="sprint.startDate">
+    </tr>
+    <tr>
+      <td>End Date: </td>
+      <input type="date" [(ngModel)]="sprint.endDate">
+    </tr>
+    <tr>
+      <td>Planned Story Points: </td>
+      <input type="number" [(ngModel)]="sprint.plannedStoryPoints">
+    </tr>
+    <button type="button" class="btn btn-secondary" (click)="onBack()">Back</button>
+    <button type="button" class="btn btn-success" (click)="createSprint()">Create</button>
+    <div class="error">{{errorMsg}}</div>
+  </table>

@@ -10,6 +10,7 @@
     <td>{{project.title}}</td>
     <td>{{project.description}}</td>
     <button type="button" class="btn btn-info" routerLink="/projects/{{project.id}}">Show</button>
+    <button type="button" class="btn btn-info" (click)="setCurrentProject(project.id)" routerLink="/sprints">Go to Sprints</button>
   </tr>
 </table>
 </div>
