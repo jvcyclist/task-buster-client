@@ -1,3 +1,5 @@
+import { UserinfoService } from './../../userinfo.service';
+import { UserService } from './../../core/user/user.service';
 import { ProjectsService } from './../../services/projects.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/project.model';
@@ -8,11 +10,13 @@ import { Project } from 'src/app/shared/project.model';
   styleUrls: ['./create-project.component.css']
 })
 export class CreateProjectComponent implements OnInit {
-
   public project: Project = new Project();
+  userName;
 
-  constructor(private projectsService: ProjectsService) { }
+  constructor(private projectsService: ProjectsService,
+    private userInfoService: UserinfoService) { }
   ngOnInit(): void {
+    this.userInfoService.getCurrentUserName().subscribe( data => this.userName = data.name);
   }
 
   addProject(){

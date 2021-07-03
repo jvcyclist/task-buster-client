@@ -1,9 +1,11 @@
+import { ProjectsService } from './../services/projects.service';
 import { SprintsService } from './../services/sprints.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TasksService } from '../services/tasks.service';
 import { Task } from '../shared/task.model';
 import { Sprint } from '../shared/sprint.model';
+import { Project } from '../shared/project.model';
 
 
 @Component({
@@ -13,11 +15,15 @@ import { Sprint } from '../shared/sprint.model';
 })
 export class TaskBoardComponent implements OnInit {
 
-  currentSprint: Sprint;
-  currentSprintId: number;
+  currentProject: Project = new Project();
+  currentProjectId: number = 1;
+  projects: Project[];
+
+  currentSprint: Sprint = new Sprint();
+  currentSprintId: number = 1;
   sprints: Sprint[];
 
-  tasks: Array<Task>;
+  tasks: Task[];
 
   constructor(
     private tasksService: TasksService,
@@ -36,6 +42,9 @@ export class TaskBoardComponent implements OnInit {
         this.tasks = currentSprint.taskList;
         this.currentSprintId = currentSprint.id;
         this.showTasks();
+      },
+      () =>{
+        this.currentSprintId = 1;
       }
       )
   }
@@ -52,7 +61,11 @@ export class TaskBoardComponent implements OnInit {
 
   showTasks(): void {
     this.cleanTasks();
-    this.groupTasks(this.tasks);
+    this.tasksService.getAllTasksBySprintId(this.currentSprintId).subscribe(tasks => {
+      this.tasks = tasks;
+      this.groupTasks(this.tasks);
+     });
+
   }
 
   drop(event: CdkDragDrop<Task[]>) {

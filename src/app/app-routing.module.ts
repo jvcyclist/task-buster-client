@@ -1,3 +1,4 @@
+import { AuthGuardService } from './auth/auth-guard.service';
 import { SprintsCreateComponent } from './sprints/sprints-create/sprints-create.component';
 import { SprintsDetailsComponent } from './sprints/sprints-details/sprints-details.component';
 import { SprintsComponent } from './sprints/sprints.component';
@@ -13,21 +14,24 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {TaskBoardComponent} from './task-board/task-board.component';
 import {LoginComponent} from './login/login.component';
+import { CallbackComponent } from './callback/callback.component';
 
 const  routes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: LoginComponent},
-  {path: 'kanban', component: TaskBoardComponent},
+  {path: 'kanban', component: TaskBoardComponent, canActivate: [AuthGuardService]},
   {path: 'register', component: RegisterComponent },
-  {path: 'task/:id', component: TaskDetailsComponent },
-  {path: 'projects', component: ProjectsComponent },
-  {path: 'projects/:id', component: ProjectDetailsComponent },
-  {path: 'projects/create', component: CreateProjectComponent },
-  {path: 'sprints', component: SprintsComponent },
-  {path: 'sprints/:id', component: SprintsDetailsComponent },
-  {path: 'sprints/create', component: SprintsCreateComponent },
+  {path: 'task/:id', component: TaskDetailsComponent , canActivate: [AuthGuardService]},
+  {path: 'projects', component: ProjectsComponent , canActivate: [AuthGuardService]},
+  {path: 'projects/:id', component: ProjectDetailsComponent , canActivate: [AuthGuardService]},
+  {path: 'project/create', component: CreateProjectComponent , canActivate: [AuthGuardService]},
+  {path: 'sprints', component: SprintsComponent , canActivate: [AuthGuardService]},
+  {path: 'sprints/:id', component: SprintsDetailsComponent, canActivate: [AuthGuardService] },
+  {path: 'sprint/create', component: SprintsCreateComponent, canActivate: [AuthGuardService] },
+  {path: 'callback', component: CallbackComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
 
-  {path: '**', component: PageNotFoundComponent},
+  {path: '**', component: PageNotFoundComponent}
 ]
 
 @NgModule({

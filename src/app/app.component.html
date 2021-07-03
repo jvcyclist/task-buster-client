@@ -1,9 +1,7 @@
-<div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
+<div>
+<div *ngIf="isAuthenticated" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="model">
   <label ngbButtonLabel class="btn-primary">
     <input ngbButton type="radio" routerLink="/home" value="1"> Home
-  </label>
-  <label ngbButtonLabel class="btn-primary">
-    <input ngbButton type="radio" routerLink="/kanban" value="kanban"> Task Board
   </label>
   <label ngbButtonLabel class="btn-primary">
     <input ngbButton type="radio" routerLink="/projects" value="false"> Projects
@@ -11,7 +9,20 @@
   <label ngbButtonLabel class="btn-primary">
     <input ngbButton type="radio" routerLink="/sprints" value="false"> Sprints
   </label>
+  <label ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" routerLink="/kanban" value="kanban"> Task Board
+  </label>
 </div>
+<div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
+  <label *ngIf="!isAuthenticated" ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" routerLink="/login" value="false"> Login
+  </label>
+  <label *ngIf="isAuthenticated" ngbButtonLabel class="btn-primary">
+    <input ngbButton type="radio" value="false" (click)="logout()">Logout
+  </label>
+</div>
+</div>
+
 <hr>
  <router-outlet></router-outlet>
 <footer>Patryk Karaś</footer>

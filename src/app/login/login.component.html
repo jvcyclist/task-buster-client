@@ -1,15 +1,19 @@
-<h1>login works ! </h1>
-    <table>
-      <tr>
-        <td><label>Login</label></td>
-        <td> <input type="text" placeholder="type here your login"></td>
-      </tr>
-      <tr>
-        <td><label>Password</label></td>
-        <td> <input type="password" placeholder="type here your password"></td>
-      </tr>
-    </table>
-    <button>Login</button>
+<h1>Login</h1>
 
-  <h4>You don't have an account?</h4>
-  <a routerLink="/register">Let's Register!</a>
+<h4>You are not logged in.</h4>
+<h4>Please sign in through one of available methods:</h4>
+
+<div class="container">
+<div class="row">
+<cool-google-button color="dark" (click)="login('google')">
+  Login with Google
+</cool-google-button>
+</div>
+
+<div class="row">
+<cool-facebook-button color="dark" (click)="login('facebook')">
+  Login with Facebook
+</cool-facebook-button>
+</div>
+
+</div>

@@ -1,3 +1,6 @@
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthHeaderInterceptorService } from './auth/auth-header-interceptor.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -7,11 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskBoardComponent } from './task-board/task-board.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
-import {TasksService} from './services/tasks.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TasksService} from './services/tasks.service';
 import { AppRoutingModule } from './app-routing.module';
-import {ActivatedRoute, RouterModule} from '@angular/router';
-import {UserService} from './core/user/user.service';
+import { RouterModule} from '@angular/router';
+import { UserService} from './core/user/user.service';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +27,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SprintsComponent } from './sprints/sprints.component';
 import { SprintsDetailsComponent } from './sprints/sprints-details/sprints-details.component';
 import { SprintsCreateComponent } from './sprints/sprints-create/sprints-create.component';
+import { CallbackComponent } from './callback/callback.component';
+import { CoolSocialLoginButtonsModule } from '@angular-cool/social-login-buttons';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +45,8 @@ import { SprintsCreateComponent } from './sprints/sprints-create/sprints-create.
     ProjectDetailsComponent,
     SprintsComponent,
     SprintsDetailsComponent,
-    SprintsCreateComponent
+    SprintsCreateComponent,
+    CallbackComponent
   ],
   imports: [
     CommonModule,
@@ -49,14 +56,21 @@ import { SprintsCreateComponent } from './sprints/sprints-create/sprints-create.
     BrowserAnimationsModule,
     DragDropModule,
     HttpClientModule,
-    AppRoutingModule,
     RouterModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    CoolSocialLoginButtonsModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHeaderInterceptorService,
+      multi: true
+    },
     TasksService,
-    UserService
+    UserService,
+    AuthGuardService,
+    AuthInterceptorService
   ],
   bootstrap: [AppComponent]
 })
