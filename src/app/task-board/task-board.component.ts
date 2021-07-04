@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TreeService } from './../tree.service';
 import { ProjectsService } from './../services/projects.service';
 import { SprintsService } from './../services/sprints.service';
@@ -19,6 +20,7 @@ export class TaskBoardComponent implements OnInit {
   currentProject: Project = new Project();
   currentProjectId: number = 1;
   projects: Project[];
+  usedStoryPoints: number = 0;
 
   currentSprint: Sprint = new Sprint();
   currentSprintId: number = 1;
@@ -30,10 +32,16 @@ export class TaskBoardComponent implements OnInit {
     private tasksService: TasksService,
     private sprintsService: SprintsService,
     private treeService: TreeService,
-    private projectService: ProjectsService
+    private projectService: ProjectsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if (!this.treeService.currentSprintId){
+      this.router.navigate(['/sprints']);
+    }
+
+
     this.currentSprintId = this.treeService.currentSprintId;
     this.projectService.getProject(this.treeService.currentProjectId).subscribe(project =>{
       this.currentProject = project;
@@ -50,6 +58,7 @@ export class TaskBoardComponent implements OnInit {
 
       this.tasksService.getAllTasksBySprintId(this.treeService.currentSprintId).subscribe(tasks => {
         this.tasks = tasks;
+        this.updateUsedStoryPoints();
         this.showTasks();
       })
 
@@ -140,13 +149,21 @@ export class TaskBoardComponent implements OnInit {
     this.QA = [];
     this.TODO = [];
   }
-
+3
   updateTaskStatus(id: number, progress: string) {
     let task: Task = new Task();
     task.id = id;
     task.progress = progress;
     console.log(task);
-    this.tasksService.updateTaskStatus(task).subscribe(res => console.log(res));
+    this.tasksService.updateTaskStatus(task).subscribe(res => {console.log(res)
+      this.tasksService.getAllTasksBySprintId(this.currentSprintId).subscribe(tasks =>{
+        this.tasks = tasks;
+        this.updateUsedStoryPoints();
+      })
+
+    });
+
+
   }
 
   changeCurrentSprint(id: number){
@@ -154,6 +171,15 @@ export class TaskBoardComponent implements OnInit {
     this.tasks = this.currentSprint.taskList;
     this.treeService.currentSprintId = id;
     this.showTasks();
+  }
+
+  updateUsedStoryPoints(){
+    this.usedStoryPoints = 0;
+    this.tasks.forEach(task =>{
+      if(task.progress === 'DONE'){
+        this.usedStoryPoints = this.usedStoryPoints + task.storyPoints;
+      }
+    })
   }
 
 }

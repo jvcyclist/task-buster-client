@@ -23,9 +23,9 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProject();
-    this.participants.push(new User('user1',''));
-    this.participants.push(new User('user2',''));
-    this.participants.push(new User('user3',''));
+    this.participants.push(new User(1,'TestUser1'));
+    this.participants.push(new User(1,'TestUser2'));
+    this.participants.push(new User(1,'TestUser3'));
   }
 
   getProject(): void {

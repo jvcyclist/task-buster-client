@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProjectsService } from './../services/projects.service';
 import { Project } from './../shared/project.model';
 import { TreeService } from './../tree.service';
@@ -19,10 +20,18 @@ export class SprintsComponent implements OnInit {
   constructor(
     private sprintsService: SprintsService,
     private treeService: TreeService,
-    private projectsService: ProjectsService
+    private projectsService: ProjectsService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
+
+      if(!this.treeService.currentProjectId){
+        this.router.navigate(['/projects']);
+      }
+
+
+
     this.projectsService.getProject(this.treeService.currentProjectId).subscribe(project =>{
       this.project = project;
     })

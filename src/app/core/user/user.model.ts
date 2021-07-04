@@ -1,12 +1,12 @@
 export interface IUser {
+  id?: number;
   username?: string;
-  password?: string;
 
 }
 
 export class User implements IUser {
   constructor(
-    public username?: string,
-    public password?: string
+    public id?: number,
+    public username?: string
   ) {}
 }

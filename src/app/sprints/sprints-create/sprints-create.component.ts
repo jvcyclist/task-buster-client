@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
 import { SprintsService } from './../../services/sprints.service';
 import { TreeService } from './../../tree.service';
 import { ProjectsService } from './../../services/projects.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/project.model';
 import { Sprint } from 'src/app/shared/sprint.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sprints-create',
@@ -19,7 +21,8 @@ export class SprintsCreateComponent implements OnInit {
   constructor(
     private sprintsService: SprintsService,
     private projectService: ProjectsService,
-    private treeService: TreeService
+    private treeService: TreeService,
+    private location: Location
     ) { }
 
   ngOnInit(): void {
@@ -40,7 +43,7 @@ export class SprintsCreateComponent implements OnInit {
   }
 
   onBack(){
-
+    this.location.back();
   }
 
 }
