@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserinfoService } from './userinfo.service';
+import { TreeService } from './services/tree.service';
 
-describe('UserinfoService', () => {
-  let service: UserinfoService;
+describe('TreeService', () => {
+  let service: TreeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserinfoService);
+    service = TestBed.inject(TreeService);
   });
 
   it('should be created', () => {

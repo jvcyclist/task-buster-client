@@ -1,5 +1,5 @@
-import { TreeService } from './../tree.service';
-import { UserinfoService } from './../userinfo.service';
+import { TreeService } from '../services/tree.service';
+import { UserinfoService } from '../services/userinfo.service';
 import { ProjectsService } from './../services/projects.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../shared/project.model';

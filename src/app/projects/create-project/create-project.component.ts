@@ -1,6 +1,6 @@
 import { User } from 'src/app/core/user/user.model';
 import { Location } from '@angular/common';
-import { UserinfoService } from './../../userinfo.service';
+import { UserinfoService } from '../../services/userinfo.service';
 import { ProjectsService } from './../../services/projects.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/project.model';

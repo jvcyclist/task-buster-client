@@ -1,9 +1,10 @@
+import { UserService } from './../core/user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SecurityService } from '../security.service';
+import { SecurityService } from '../services/security.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,23 @@ export class HomeComponent implements OnInit {
 
   public isLoggedIn = false;
 
-  constructor(private http: HttpClient, private securityService: SecurityService,
+  constructor(
+    private http: HttpClient,
+    private securityService: SecurityService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.getUserInfo().subscribe(data => this.name = data.name);
+    this.getUserInfo().subscribe(data => {
+      this.name = data.name;
+      if(this.name !== null){
+        this.userService.find(this.name).subscribe(foundUser => {
+          if(foundUser.username === null){
+            this.userService.create({username: this.name})
+          }
+        });
+      }
+    });
   }
 
   getUserInfo(): Observable<any> {

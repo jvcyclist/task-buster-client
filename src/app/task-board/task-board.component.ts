@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { TreeService } from './../tree.service';
+import { TreeService } from '../services/tree.service';
 import { ProjectsService } from './../services/projects.service';
 import { SprintsService } from './../services/sprints.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';

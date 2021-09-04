@@ -1,9 +1,9 @@
 import { UserinfoService } from './userinfo.service';
-import { Project } from './shared/project.model';
+import { Project } from '../shared/project.model';
 import { Observable } from 'rxjs';
-import { SprintsService } from './services/sprints.service';
-import { TasksService } from './services/tasks.service';
-import { ProjectsService } from './services/projects.service';
+import { SprintsService } from './sprints.service';
+import { TasksService } from './tasks.service';
+import { ProjectsService } from './projects.service';
 import { Injectable } from '@angular/core';
 import { observeOn } from 'rxjs/operators';
 

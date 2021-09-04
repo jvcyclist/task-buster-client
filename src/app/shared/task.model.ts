@@ -3,6 +3,7 @@ export interface ITask {
   name?: string;
   description?: string;
   storyPoints?: number;
+  priority?: number;
   progress?: string;
   sprint_id?: number;
 }
@@ -14,6 +15,7 @@ export class Task implements ITask {
               public description?: string,
               public storyPoints?: number,
               public progress?: string,
+              public priority?: number,
               public sprint_id?: number
               ) {}
 }

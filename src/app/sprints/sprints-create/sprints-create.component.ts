@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { SprintsService } from './../../services/sprints.service';
-import { TreeService } from './../../tree.service';
+import { TreeService } from '../../services/tree.service';
 import { ProjectsService } from './../../services/projects.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/project.model';

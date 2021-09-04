@@ -1,4 +1,4 @@
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -20,7 +20,6 @@ export class SecurityService {
   private tokenKey = 'token';
 
   constructor(private http: HttpClient) { }
-
 
   login(name?) {
     if (name === 'facebook'){

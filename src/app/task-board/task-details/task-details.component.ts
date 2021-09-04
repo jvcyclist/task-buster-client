@@ -17,6 +17,7 @@ export class TaskDetailsComponent implements OnInit {
   id: number;
   task: Task = null;
   statuses: string[] = ['BACKLOG','TODO','IN_PROGRESS','QA','DONE'];
+  priorities: number[] = [1, 2, 3 ,4 , 5];
 
   constructor
   (

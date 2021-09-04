@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { ProjectsService } from './../services/projects.service';
 import { Project } from './../shared/project.model';
-import { TreeService } from './../tree.service';
+import { TreeService } from '../services/tree.service';
 import { SprintsService } from './../services/sprints.service';
 import { Component, OnInit } from '@angular/core';
 import { Sprint } from '../shared/sprint.model';
