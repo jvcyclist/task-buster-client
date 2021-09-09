@@ -1,9 +1,11 @@
+import { RegisterRequest } from './../shared/register-request.model';
 import { catchError } from 'rxjs/operators';
 import { User } from './../core/user/user.model';
 import { Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,12 +19,13 @@ const httpOptions = {
 })
 export class RegisterService {
 
-  private URL = 'http://localhost:8070/api/register'
+  private baseUrl = environment.baseUrl;
+  private registerApiEndpoint = '/api/register/';
 
   constructor(private http: HttpClient) { }
 
-  registerUser(user: User): Observable<ArrayBuffer>{
-    return this.http.post<any>(this.URL, user, httpOptions);
+  registerUser(registerRequest: RegisterRequest): Observable<any>{
+    return this.http.post<any>(this.baseUrl + this.registerApiEndpoint, registerRequest, httpOptions);
     }
 
     private handleError(error: HttpErrorResponse) {
